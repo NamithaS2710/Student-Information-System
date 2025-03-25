@@ -1,0 +1,39 @@
+1)  select A.ArtistID,A.name, count(B.ArtistID) from Artists A JOIN Artworks B ON A.ArtistID=B.ArtistID group by A.ArtistID order by count(B.ArtistID) desc;
+
+2)  select A.title, A.year from Artworks A JOIN Artists B ON A.ArtistID=B.ArtistID where B.Nationality in ("Spanish","Dutch") order by A.year;  
+
+3)  select A.Name, COUNT(B.ArtworkID)from Artists A JOIN Artworks B ON A.ArtistID = B.ArtistID JOIN Categories c ON B.CategoryID = c.CategoryID where c.Name = 'Painting' GROUP BY A.ArtistID;
+
+4)  select aw.Title AS ArtworkTitle, a.Name AS ArtistName, c.Name AS CategoryName FROM Artworks aw JOIN ExhibitionArtworks ea ON aw.ArtworkID = ea.ArtworkID JOIN Exhibitions e ON ea.ExhibitionID = e.ExhibitionID JOIN Artists a ON aw.ArtistID = a.ArtistID JOIN Categories c ON aw.CategoryID = c.CategoryID where e.Title = 'Modern Art Masterpieces';  
+
+5)   select A.Name from Artists A JOIN Artworks aw ON A.artistID=aw.ArtistID group by aw.ArtistID having count(aw.ArtistID)>2;
+
+6)  select A.Titles 
+
+7)  select c.name, count(a.categoryid) from categories c LEFT JOIN artworks a ON c.categoryid=a.categoryid group by c.name; 
+
+8)  select A.Name from Artists A JOIN Artworks aw ON A.artistID=aw.ArtistID group by aw.ArtistID having count(aw.ArtistID)>3;
+
+9)  select a.name, b.title from artists a JOIN artworks b ON a.artistid=b.artistid where a.nationality="Italian";
+
+10)  select e.Title from Exhibitions e JOIN ExhibitionArtworks ea ON e.ExhibitionID = ea.ExhibitionID JOIN Artworks aw ON ea.ArtworkID = aw.ArtworkID JOIN Artists a ON aw.ArtistID = a.ArtistID where a.Name IN ('Vincent van Gogh', 'Leonardo da Vinci') group by e.ExhibitionID, e.Title having count(DISTINCT a.ArtistID) = 2;
+
+11) select artworkid from artworks where artworkid not in (select artworkid from exhibitionartworks); 
+ 
+12)  select a.Name from Artists a JOIN Artworks aw ON a.ArtistID = aw.ArtistID GROUP BY a.ArtistID, a.Name having count(DISTINCT aw.CategoryID) = (select count(*) from Categories); 
+
+13)  select c.name, count(a.title) from categories c Left join artworks a ON c.categoryid=a.categoryid group by c.categoryid;
+
+14)  select A.Name from Artists A JOIN Artworks aw ON A.artistID=aw.ArtistID group by aw.ArtistID having count(aw.ArtistID)>2;
+
+15)  select c.Name AS CategoryName, AVG(aw.Year) from Categories c JOIN Artworks aw ON c.CategoryID = aw.CategoryID GROUP BY c.CategoryID, c.Name having COUNT(aw.ArtworkID) > 1;
+
+16)  select aw.Title from Artworks aw JOIN ExhibitionArtworks ea ON aw.ArtworkID = ea.ArtworkID JOIN Exhibitions e ON ea.ExhibitionID = e.ExhibitionID where e.Title = 'Modern Art Masterpieces';
+
+17)  select c.Name AS CategoryName, AVG(aw.Year) AS AverageYear from Categories c JOIN Artworks aw ON c.CategoryID = aw.CategoryID GROUP BY c.CategoryID, c.Name having AVG(aw.Year) > (select AVG(Year) from Artworks);
+
+18)  select artworkid from artworks where artworkid not in (select artworkid from exhibitionartworks); 
+
+19)  select DISTINCT a.Name from Artists a JOIN Artworks aw ON a.ArtistID = aw.ArtistID JOIN Categories c ON aw.CategoryID = c.CategoryID where c.CategoryID = (select CategoryID from Artworks where Title = 'Mona Lisa');
+ 
+20)  select a.name, count(aw.artistid) from artists a LEFT JOIN artworks aw ON a.artistid=aw.artistid group by artistid;  
